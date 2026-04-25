@@ -11,7 +11,7 @@ public class Internships {
         Company google = new Company(1L, "Google", "Technology", "Cairo", "hr@google.com", "01000000001");
         Company vodafone = new Company(2L, "Vodafone", "Telecommunications", "Giza", "hr@vodafone.com", "01000000002");
         Company amazon = new Company(3L, "Amazon", "E-Commerce", "Alexandria", "hr@amazon.com", "01000000003");
-//i used AI to add these content//
+//i used AI to add these content
         Intern i1 = new Intern(1L, "Backend Developer Intern",
                 "Work on REST APIs using Spring Boot",
                 "Software Engineering", "3 months", true, 3000,
