@@ -24,7 +24,6 @@ public class Intern {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    // --- Constructors ---
 
     public Intern() {
     }
@@ -43,9 +42,6 @@ public class Intern {
         this.endDate = endDate;
         this.company = company;
     }
-
-    // --- Getters & Setters ---
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
