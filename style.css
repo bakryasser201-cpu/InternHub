@@ -1,0 +1,26 @@
+body {
+    background: #f6f8fb;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.page-shell {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.card {
+    border-radius: 8px;
+    border-color: #e5e7eb;
+}
+
+.form-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
+.status-badge {
+    letter-spacing: 0;
+}
