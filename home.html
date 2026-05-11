@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>InternHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">InternHub</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-outline-primary" th:href="@{/login}">Login</a>
+            <a class="btn btn-primary" th:href="@{/register}">Register</a>
+        </div>
+    </div>
+</nav>
+<main class="container page-shell">
+    <section class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <h1 class="display-5 fw-bold">InternHub</h1>
+            <p class="lead text-secondary">A simple internship management platform for students and companies.</p>
+            <div class="d-flex gap-2">
+                <a class="btn btn-primary btn-lg" th:href="@{/register}">Get started</a>
+                <a class="btn btn-outline-secondary btn-lg" th:href="@{/login}">Sign in</a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5">What you can do</h2>
+                    <ul class="mb-0">
+                        <li>Students apply, save favorites, and track statuses.</li>
+                        <li>Companies publish internships and manage applicants.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
