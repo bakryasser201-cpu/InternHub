@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/student")
@@ -91,14 +90,8 @@ public class StudentController {
     }
 
     @PostMapping("/apply/{internshipId}")
-    public String apply(@PathVariable Long internshipId, HttpSession session , RedirectAttributes redirectAttributes) {
-        try {
-            applicationService.apply(requireStudent(session), internshipId);
-            redirectAttributes.addFlashAttribute("success", "application submitted successfuly");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "you already applied to this intern");
-            return "redirect:/student/profile";
-        }
+    public String apply(@PathVariable Long internshipId, HttpSession session) {
+        applicationService.apply(requireStudent(session), internshipId);
         return "redirect:/student/applications";
     }
 
