@@ -52,7 +52,7 @@ public class AuthService {
             studentRepository.save(student);
         } else {
             Company company = new Company();
-            company.setCompanyName(dto.getCompanyName() == null || dto.getCompanyName().isBlank() ? dto.getName() : dto.getCompanyName());
+            company.setCompanyName(dto.getCompanyName());
             company.setDescription(dto.getDescription());
             company.setLocation(dto.getLocation());
             company.setUser(savedUser);
@@ -65,10 +65,9 @@ public class AuthService {
     public User login(LoginRequestDTO dto) {
         User user = userRepository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
-        if (!passwordMatches(dto.getPassword(), user.getPassword())) {
-            throw new IllegalArgumentException("Invalid email or password");
+        if (!passwordEncoder.matches(dto.getPassword(),user.getPassword())){
+            throw new IllegalArgumentException("Invalid email or password ");
         }
-        upgradePlainTextPasswordIfNeeded(user, dto.getPassword());
         return user;
     }
 
@@ -82,19 +81,7 @@ public class AuthService {
                 .orElseThrow(() -> new ResourceNotFoundException("Company profile not found"));
     }
 
-    private boolean passwordMatches(String rawPassword, String storedPassword) {
-        if (storedPassword != null && storedPassword.startsWith("$2")) {
-            return passwordEncoder.matches(rawPassword, storedPassword);
-        }
-        return storedPassword != null && storedPassword.equals(rawPassword);
-    }
 
-    private void upgradePlainTextPasswordIfNeeded(User user, String rawPassword) {
-        if (user.getPassword() != null && !user.getPassword().startsWith("$2")) {
-            user.setPassword(passwordEncoder.encode(rawPassword));
-            userRepository.save(user);
-        }
-    }
 
     private void validateRoleFields(RegisterRequestDTO dto) {
         if (dto.getRole() == UserRole.STUDENT && isBlank(dto.getName())) {
