@@ -78,8 +78,10 @@ public class StudentController {
     }
 
     @PostMapping("/favorites/{internshipId}")
-    public String toggleFavorite(@PathVariable Long internshipId, HttpSession session) {
+    public String toggleFavorite(@PathVariable Long internshipId, HttpSession session ,RedirectAttributes redirectAttributes) {
         studentService.toggleFavorite(requireStudent(session), internshipId);
+        redirectAttributes.addFlashAttribute("success","internship added to favourite successfully");
+
         return "redirect:/student/dashboard";
     }
 
